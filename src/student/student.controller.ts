@@ -1,24 +1,30 @@
 import { Body, Controller, Delete, Get, HttpException, Param, Post } from '@nestjs/common';
+import { StudentService } from './student.service';
 import { error } from 'console';
 
 @Controller('student')
 export class StudentController {
+constructor(private StudentService:StudentService){}
+
     @Get()
-    getAll(){
-        throw new Error()
-    }
+     getAll(){
+        return this.StudentService.getAll();
+      }
+
     @Get(":id")
-        getOne(@Param('id') id: string){
-        throw new HttpException("Error",500)
-    }
+        getOne(){
+            return this.StudentService.getOne("id");
+          }
+
     @Post()
-    newStudent(@Body('id') id: string){
-        throw new Error()
-    }
+    newStudent(){
+        return this.StudentService.newStudent("id");
+      }
+
     @Delete()
     deleteStudent(){
-        throw new Error()
-    }
+        return this.StudentService.deleteStudent();
+      }
 }
 
 
